@@ -31,13 +31,13 @@ def main():
             directory_path = os.path.join(dirpath, dirname)
             result = get_memory_utilization(directory_path)
             print(f"Directory: {directory_path}\n{result}\n")
-            wandb.log(str(directory_path),float(result.split('\t')[0]))
+            wandb.log(str(directory_path),float(result.split('\t')[0])/(1024 * 1024*2))
             
         for filename in filenames:
             file_path = os.path.join(dirpath, filename)
             result = get_memory_utilization(file_path)
             print(f"File: {file_path}\n{result}\n")
-            wandb.log(str(file_path),float(result.split('\t')[0]))
+            wandb.log(str(file_path),float(result.split('\t')[0])/(1024 * 1024*2))
         wandb.end()
         break;
 
